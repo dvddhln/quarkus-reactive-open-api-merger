@@ -1,0 +1,89 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Open API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-muted.css">
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+
+        .swagger-ui .topbar {
+            padding: 8px 30px;
+            background-color: #3F778E;
+        }
+
+        .topbar-wrapper img {
+            content: url('https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/favicon-32x32.png');
+        }
+    </style>
+</head>
+
+<body>
+<div id="swagger-ui"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-standalone-preset.js"></script>
+<script>
+
+
+    function initUI() {
+
+        const ui = SwaggerUIBundle({
+            urls: sysUrls,
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+            ],
+            plugins: [
+                SwaggerUIBundle.plugins.DownloadUrl
+            ],
+            layout: "StandaloneLayout"
+        })
+        // End Swagger UI call region
+
+        window.ui = ui
+
+    }
+
+    window.onload = function () {
+
+        $.getJSON("/v1/services/list", function (data) {
+        
+            sysUrls = []
+            sysUrls.push({url: "/v1/services", name: "- All services"})
+
+            for (var i = 0; i < data.length; i++) {
+                sysUrls.push({url: "/v1/services/list/"+data[i].displayName, name: data[i].displayName})
+            }
+            initUI()
+        });
+
+
+    }
+</script>
+
+
+</body>
+
+</html>

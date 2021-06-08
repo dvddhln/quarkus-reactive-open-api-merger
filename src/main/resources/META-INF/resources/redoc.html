@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      header {
+            background-size: 100% 100%;
+            height: 50px;
+            background-color: rgb(38 50 56);
+        }
+
+      body {
+        margin: 0;
+        padding: 0;
+        border-bottom: 0px;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="redoc"/>
+<script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+
+<script type="text/javascript">
+               Redoc.init('/v1/services', {
+                   expandResponses: "200,201,202,203,204",
+                   pathInMiddlePanel: true,
+                   hideDownloadButton: true
+               }, document.getElementById('redoc'));
+           </script>
+
+</body>
+
+</html>
