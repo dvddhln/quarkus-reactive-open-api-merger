@@ -6,6 +6,10 @@ This project demonstrates the usage of collecting a set of open api specificatio
 two different views, Swagger UI and Redoc. The latter makes use of custom extensions, with can be configured adding custom vendor group
 tags.
 
+Solution is partially presented here
+
+[Building a Reactive polling mechanism with SmallRye Mutiny and Quarkus](https://dvddhln.medium.com/building-a-reactive-polling-mechanism-with-smallrye-mutiny-and-quarkus-f86802653140
+)
 
 ## Running the application in dev mode
 
@@ -16,7 +20,7 @@ You can run your application in dev mode that enables live coding using:
 
 ### Swagger UI
 
-Swagger UI is locted at
+Swagger UI is located at
 
 http://localhost:8080
 
