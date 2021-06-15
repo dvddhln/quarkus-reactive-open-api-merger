@@ -39,14 +39,14 @@ public class OpenAPIPollService {
     long initialDelay;
 
     @Inject
-    @ConfigProperty(name = "polling.unit", defaultValue = "Seconds")
+    @ConfigProperty(name = "polling.unit", defaultValue = "SECONDS")
     String pollUnit;
 
     void onStart(@Observes StartupEvent ev) {
         log.info("The application is starting...");
 
-        Multi.createFrom().ticks().startingAfter(Duration.of(frequencyPolling, ChronoUnit.valueOf(pollUnit)))
-                .every(Duration.of(initialDelay, ChronoUnit.valueOf(pollUnit)))
+        Multi.createFrom().ticks().startingAfter(Duration.of(initialDelay, ChronoUnit.valueOf(pollUnit)))
+                .every(Duration.of(frequencyPolling, ChronoUnit.valueOf(pollUnit)))
                 .onItem().invoke(() -> Multi.createFrom().iterable(openAPIServicesConfig.configs())
                 .onItem().transform(openAPIConfiguration -> {
                     try {
